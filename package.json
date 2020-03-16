@@ -1,0 +1,17 @@
+{
+  "name": "react-component",
+  "version": "1.0.0",
+  "description": "this is test",
+  "main": "cli.js",
+  "scripts": {
+    "create-component": "node cli.js"
+  },
+  "author": "kunal",
+  "license": "ISC",
+  "bin": {
+    "create-component": "./cli.js"
+  },
+  "dependencies": {
+    "inquirer": "^7.1.0"
+  }
+}
