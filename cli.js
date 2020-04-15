@@ -55,12 +55,12 @@ const createComponent = async () => {
 
     // var configObj = JSON.parse(fs.readFileSync('config.js', 'utf8'))
 
-    const { name, test, scss, props } = argsObj
+    const { name, test, scss, props, redux } = argsObj
 
     if (!name)
         throw new Error('Name arg is Mandatory')
 
-    let cmpArgs = { scss }
+    let cmpArgs = { scss, redux }
 
     if (props) {
         const propsArray = await parseProps(props)
