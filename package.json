@@ -1,12 +1,13 @@
 {
-  "name": "react-component",
+  "name": "react-component-cli",
   "version": "1.0.0",
-  "description": "this is test",
+  "description": "",
   "main": "cli.js",
   "scripts": {
-    "create-component": "node cli.js"
+    "create-component": "node cli.js",
+    "build": "npm-scripts build"
   },
-  "author": "kunal",
+  "author": "Kunal Kendrekar",
   "license": "ISC",
   "bin": {
     "create-component": "./cli.js"
