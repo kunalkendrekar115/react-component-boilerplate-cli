@@ -145,8 +145,10 @@ const validArgs = ['redux', 'scss', 'test', 'props']
 
 const argsObj = myArgs.reduce((acc, args, index) => {
 
-    if (index == 0)
-        return { "name": args }
+    if (index == 0) {
+        const capitizedName = `${args.charAt(0).toUpperCase()}${args.slice(1)}`
+        return { "name": capitizedName }
+    }
 
     if (validArgs.includes(args))
         return { ...acc, [args]: true }
