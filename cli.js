@@ -55,7 +55,7 @@ const createComponent = async () => {
 
     // var configObj = JSON.parse(fs.readFileSync('config.js', 'utf8'))
 
-    const { name, test, scss, props, redux } = argsObj
+    const { name, redux, scss, test, props } = argsObj
 
     if (!name)
         throw new Error('Name arg is Mandatory')
@@ -69,10 +69,10 @@ const createComponent = async () => {
     } else
         createReactComponent(name, cmpArgs)
 
-    if (scss && scss.toUpperCase() === 'Y')
+    if (scss)
         createScssFile(name)
 
-    if (test && test.toUpperCase() === 'Y')
+    if (test)
         createTestFile(name)
 
 }
@@ -141,11 +141,17 @@ parseProps = () => {
 
 var myArgs = process.argv.slice(2);
 
-const argsObj = myArgs.reduce((acc, args) => {
-    keyVal = args.split('=')
-    return {
-        ...acc, [keyVal[0]]: keyVal[1]
-    }
+const validArgs = ['redux', 'scss', 'test', 'props']
+
+const argsObj = myArgs.reduce((acc, args, index) => {
+
+    if (index == 0)
+        return { "name": args }
+
+    if (validArgs.includes(args))
+        return { ...acc, [args]: true }
+    else
+        throw new Error(`Invalid argument ${args}`)
 }, {})
 
 if (argsObj)
