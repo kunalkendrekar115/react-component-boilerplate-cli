@@ -2,15 +2,15 @@
   "name": "react-component-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "cli.js",
+  "main": "./src/cli.js",
   "scripts": {
-    "create-component": "node cli.js",
+    "create-component": "node ./src/cli.js",
     "build": "npm-scripts build"
   },
   "author": "Kunal Kendrekar",
   "license": "ISC",
   "bin": {
-    "create-component": "./cli.js"
+    "create-component": "./src/cli.js"
   },
   "dependencies": {
     "inquirer": "^7.1.0"
