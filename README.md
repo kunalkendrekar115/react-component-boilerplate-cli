@@ -17,13 +17,13 @@ Create components with below folder structure
 - Create functional components type using prompts: 
     - `crc` 
 - Create Plain Component
-   - `clr <ComponentName>`
+   - `crc <ComponentName>`
 
 - Create Component with scss and test file
-   - `clr <ComponentName> scss test` 
+   - `crc <ComponentName> scss test` 
 
 - Create Component with props
-   - `clr <ComponentName> props` 
+   - `crc <ComponentName> props` 
   
 You have to pass props in sequence separated by `-`: PropName-Type-isRequired-DefaultValue 
 Type and isRequired  are optioanal arguments with default value `string` and  `Y` respectivly
