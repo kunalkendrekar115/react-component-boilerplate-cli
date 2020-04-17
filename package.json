@@ -1,6 +1,6 @@
 {
   "name": "react-component-boilerplate-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This cli lets you to create react components with boilerplate code generation for imports, render and PropTypes , create respective scss and test file for component.\n\n type crc -help for assist",
   "main": "./src/cli.js",
   "scripts": {
