@@ -12,7 +12,7 @@ getDefauleValue = (type) => {
         case 'array': return [];
         case 'bool': return false;
         default: null;
-            ;
+            
     }
 }
 parseProps = () => {

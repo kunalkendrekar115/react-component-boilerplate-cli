@@ -1,16 +1,16 @@
 {
-  "name": "react-component-cli",
+  "name": "react-component-boilerplate-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "This cli lets you to create react components with boilerplate code generation for imports, render and PropTypes , create respective scss and test file for component.\n\n type crc -help for assist",
   "main": "./src/cli.js",
   "scripts": {
-    "create-component": "node ./src/cli.js",
+    "crc": "node ./src/cli.js",
     "build": "npm-scripts build"
   },
   "author": "Kunal Kendrekar",
   "license": "ISC",
   "bin": {
-    "create-component": "./src/cli.js"
+    "crc": "./src/cli.js"
   },
   "dependencies": {
     "inquirer": "^7.1.0"

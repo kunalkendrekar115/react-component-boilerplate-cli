@@ -9,7 +9,7 @@ const createComponent = async (argsObj) => {
         const { name, redux, scss, test, props } = argsObj
 
         if (!name)
-            throw new Error('Name arg is Mandatory')
+            throw new Error('Component Name should be first argument')
 
         let cmpArgs = { scss, redux }
 

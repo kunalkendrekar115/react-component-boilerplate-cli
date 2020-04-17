@@ -7,9 +7,15 @@ var myArgs = process.argv.slice(2);
 
 const validArgs = ['redux', 'scss', 'test', 'props']
 
+if (myArgs[0] === '-help') {
+    const helpContent = require('../help')
+    helpContent()
+    return
+}
+
 const argsObj = myArgs.reduce((acc, args, index) => {
 
-    if (index == 0) {    
+    if (index == 0) {
         const capitizedName = `${args.charAt(0).toUpperCase()}${args.slice(1)}`
         return { "name": capitizedName }
     }
