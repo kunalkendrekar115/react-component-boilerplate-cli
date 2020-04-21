@@ -26,12 +26,7 @@ Create components with below folder structure
    - `crc <ComponentName> props` 
 
 ### Examples
-
-- Create Component with scss & Testfile
 ![screen recording](http://g.recordit.co/IJFrpFGvTk.gif)
-
-
-- Create Component with Props
 
 ![screen recording](http://g.recordit.co/FzBmovon2m.gif)
 
