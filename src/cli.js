@@ -2,6 +2,8 @@
 
 
 const createComponent = require('./creator')
+const logSymbols = require('log-symbols');
+
 
 var myArgs = process.argv.slice(2);
 
@@ -23,7 +25,7 @@ const argsObj = myArgs.reduce((acc, args, index) => {
     if (validArgs.includes(args.toLocaleLowerCase()))
         return { ...acc, [args]: true }
     else
-        throw new Error(`Invalid argument ${args}`)
+        console.log(logSymbols.error, `Invalid argument ${args}`)
 }, {})
 
 if (argsObj)

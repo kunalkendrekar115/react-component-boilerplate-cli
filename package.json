@@ -1,6 +1,6 @@
 {
   "name": "react-component-boilerplate-cli",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "This cli lets you to create react components with boilerplate code generation for imports, render and PropTypes , create respective scss and test file for component.\n\n type crc -help for assist",
   "main": "./src/cli.js",
   "scripts": {
@@ -13,11 +13,16 @@
     "crc": "./src/cli.js"
   },
   "dependencies": {
-    "inquirer": "^7.1.0"
+    "inquirer": "^7.1.0",
+    "log-symbols": "^3.0.0"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/kunalkendrekar115/react-component-boilerplate-cli.git"
+    "type": "git",
+    "url": "https://github.com/kunalkendrekar115/react-component-boilerplate-cli.git"
   },
-  "keywords":["react","react component create","boilerplate code generator"]
+  "keywords": [
+    "react",
+    "react component create",
+    "boilerplate code generator"
+  ]
 }

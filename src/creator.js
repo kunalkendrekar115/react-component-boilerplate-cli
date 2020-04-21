@@ -2,6 +2,8 @@ var fs = require('fs')
 
 const templets = require('./templets')
 const parseProps = require('./parser')
+const logSymbols = require('log-symbols');
+
 
 const createComponent = async (argsObj) => {
 
@@ -25,7 +27,12 @@ const createComponent = async (argsObj) => {
 
         if (test)
             createTestFile(name)
-    } catch (error) { console.log(error) }
+    } catch (error) {
+        if (error.message)
+            console.log(logSymbols.error, error.message)
+        else
+            console.log(logSymbols.error, error)
+    }
 }
 
 const createReactComponent = (componentName, args) => {
@@ -38,7 +45,7 @@ const createReactComponent = (componentName, args) => {
         if (err)
             console.log(err)
         else
-            console.log('index.jsx File Created')
+            console.log(logSymbols.success, 'index.jsx File Created')
     })
 }
 
@@ -48,7 +55,7 @@ const createScssFile = (dir) => {
         if (err)
             console.log(err)
         else
-            console.log('index.scss File Created')
+            console.log(logSymbols.success, 'index.scss File Created')
     })
 }
 
@@ -58,7 +65,7 @@ createTestFile = (dir) => {
         if (err)
             console.log(err)
         else
-            console.log('index.spec.js File Created')
+            console.log(logSymbols.success, 'index.spec.js File Created')
     })
 }
 
