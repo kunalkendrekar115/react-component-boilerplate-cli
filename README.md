@@ -24,6 +24,17 @@ Create components with below folder structure
 
 - Create Component with props
    - `crc <ComponentName> props` 
+
+### Examples
+
+- Create Component with scss & Testfile
+![screen recording](http://g.recordit.co/IJFrpFGvTk.gif)
+
+
+- Create Component with Props
+
+![screen recording](http://g.recordit.co/FzBmovon2m.gif)
+
   
 You have to pass props in sequence separated by `-`: PropName-Type-isRequired-DefaultValue 
 Type and isRequired  are optioanal arguments with default value `string` and  `Y` respectivly
