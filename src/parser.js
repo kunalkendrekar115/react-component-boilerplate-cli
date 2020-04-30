@@ -21,7 +21,7 @@ parseProps = () => {
 
         inquirer
             .prompt([
-                { name: 'props', message: 'Enter Props name-type-isRequired(y/n)-defaultValue separated by comma (ex: userId-number-n-10)' }
+                { name: 'props', message: 'Enter Props name-type-isRequired(y/n)-defaultValue separated by comma(,) \n(ex: userId-number-n-10)' }
             ]).then(({ props }) => {
 
                 let propsArray = props.replace(/\s/g, "")

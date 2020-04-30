@@ -9,10 +9,6 @@ Create components with below folder structure
 - `ComponentName/index.scss` (optional)
 
 
-  
-### Installation
-- `npm -g install react-component-boilerplate-cli`
-
 ### Usage
 - Create functional components type using prompts: 
     - `crc` 
