@@ -14,10 +14,15 @@ const getImportString = (isScssImport, isPropsAvailable, isRedux) => {
     return importString
 }
 
-const getReturnBody = () => `return (
+const getJSXBody = (jsx) => {
+
+    if (jsx)
+        return (`return (\n${jsx}\n)`)
+    return (`return (
       <div>
       </div>
-    ); `
+    ); `)
+}
 
 const getExportStr = (componentName, isScss, isRedux) => {
 
@@ -27,9 +32,14 @@ const getExportStr = (componentName, isScss, isRedux) => {
 
     if (isScss) {
         cmpName = `${componentName}Styled`
-        exportString = `const ${cmpName} = CSSModules(${componentName}, styles, {
+        if (!isRedux)
+            return `export default ${cmpName} = CSSModules(${componentName}, styles, {
       allowMultiple: true
     }); `
+        else
+            exportString = `const ${cmpName} = CSSModules(${componentName}, styles, {
+        allowMultiple: true
+      }); `
     }
     else if (isRedux) {
         exportString = `${exportString}\nexport default connect(mapStateToProps, mapDispatchToProps)(${cmpName}); `
@@ -86,5 +96,5 @@ ${componentName}.defaultProps = {
 }
 
 module.exports = {
-    getImportString, getReturnBody, getPropTypes, getReduxMap, getExportStr
+    getImportString, getJSXBody, getPropTypes, getReduxMap, getExportStr
 }

@@ -7,7 +7,7 @@ const logSymbols = require('log-symbols');
 
 var myArgs = process.argv.slice(2);
 
-const validArgs = ['redux', 'scss', 'test', 'props']
+const validArgs = ['redux', 'scss', 'test', 'props','jsx']
 
 if (myArgs[0] === '-help') {
     const helpContent = require('../help')

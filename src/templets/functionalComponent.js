@@ -1,25 +1,25 @@
 
 const helpers = require('./helpers')
 
-const { getImportString, getReturnBody, getPropTypes, getReduxMap, getExportStr } = helpers
+const { getImportString, getJSXBody, getPropTypes, getReduxMap, getExportStr } = helpers
 
-const getFunctionalComponent = (componentName, { props, scss, redux }) => {
+const getFunctionalComponent = (componentName, { props, scss, redux ,jsx}) => {
 
   if (props)
-    return getFunctionalComponentWithProps(componentName, { props, scss, redux })
+    return getFunctionalComponentWithProps(componentName, { props, scss, redux,jsx })
 
   return (`${getImportString(scss, false, redux)}
 \n
 ${ redux ? getReduxMap() : ''}
 export function ${ componentName} () {\n
-  ${getReturnBody()}
+  ${getJSXBody(jsx)}
 }\n
 ${ getExportStr(componentName, scss, redux)} `)
 
 }
 
 
-const getFunctionalComponentWithProps = (componentName, { props, scss, redux }) => {
+const getFunctionalComponentWithProps = (componentName, { props, scss, redux ,jsx}) => {
 
   const propsStr = props.reduce((acc, { propName: name }, index) => {
     if (index == 0)
@@ -30,7 +30,7 @@ const getFunctionalComponentWithProps = (componentName, { props, scss, redux }) 
   return (`${getImportString(scss, true, redux)} \n
 ${ redux ? getReduxMap() : ''}
 export function ${ componentName} ({ ${propsStr}}) {\n
-  ${getReturnBody()}
+  ${getJSXBody(jsx)}
 }\n
 ${getPropTypes(componentName, props)}
 \n
