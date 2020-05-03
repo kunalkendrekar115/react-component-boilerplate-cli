@@ -19,7 +19,7 @@ const createComponent = async (argsObj) => {
 
         if (props) {
             const propsArray = await parseProps()
-            console.log(propsArray )
+            console.log(propsArray)
             cmpArgs = { ...cmpArgs, props: propsArray }
         }
 
@@ -49,7 +49,7 @@ const createComponent = async (argsObj) => {
 
     } catch (error) {
         if (error.message)
-            console.log(logSymbols.error, error)
+            console.log(logSymbols.error, error.message)
         else
             console.log(logSymbols.error, error)
     }
@@ -60,41 +60,20 @@ const createReactComponent = (componentName, args) => {
     fs.mkdirSync(componentName)
 
     const templaeStr = templets.getFunctionalComponent(componentName, args)
+    fs.writeFileSync(componentName + '/index.jsx', templaeStr)
+    
+    console.log(logSymbols.success, 'created index.jsx ')
 
-    return new Promise((resolve, reject) => {
-        fs.writeFile(componentName + '/index.jsx', templaeStr, (err) => {
-            if (err)
-                reject(err)
-
-            console.log(logSymbols.success, 'created index.jsx ')
-            resolve('Success')
-        })
-    })
 }
 
 const createScssFile = (dir) => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(dir + '/index.style.scss', '', (err) => {
-            if (err)
-                reject(err)
-
-            console.log(logSymbols.success, 'created index.style.scss')
-            resolve('Success')
-        })
-    })
+    fs.writeFileSync(dir + '/index.style.scss', '')
+    console.log(logSymbols.success, 'created index.style.scss')
 }
 
 createTestFile = (dir) => {
-
-    return new Promise((resolve, reject) => {
-        fs.writeFile(dir + '/index.spec.js', '', (err) => {
-            if (err)
-                reject(err)
-
-            console.log(logSymbols.success, 'created index.spec.js')
-            resolve('Success')
-        })
-    })
+    fs.writeFileSync(dir + '/index.spec.jsx', '')
+    console.log(logSymbols.success, 'created index.spec.jsx')
 }
 
 module.exports = createComponent

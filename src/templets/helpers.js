@@ -17,7 +17,7 @@ const getImportString = (isScssImport, isPropsAvailable, isRedux) => {
 const getJSXBody = (jsx) => {
 
     if (jsx)
-        return (`return (\n${jsx}\n)`)
+        return (`return (\n  ${jsx}\n )`)
     return (`return (
       <div>
       </div>
@@ -30,20 +30,23 @@ const getExportStr = (componentName, isScss, isRedux) => {
 
     let cmpName = componentName;
 
-    if (isScss) {
+    if (isScss && !isRedux) {
         cmpName = `${componentName}Styled`
-        if (!isRedux)
-            return `export default ${cmpName} = CSSModules(${componentName}, styles, {
+        exportString = `export default ${cmpName} = CSSModules(${componentName}, styles, {
       allowMultiple: true
     }); `
-        else
-            exportString = `const ${cmpName} = CSSModules(${componentName}, styles, {
+    } else if (isScss && isRedux) {
+        cmpName = `${componentName}Styled`
+        exportString = `const ${cmpName} = CSSModules(${componentName}, styles, {
         allowMultiple: true
       }); `
     }
-    else if (isRedux) {
-        exportString = `${exportString}\nexport default connect(mapStateToProps, mapDispatchToProps)(${cmpName}); `
-    } else
+
+    if (isRedux) {
+        exportString = `${exportString}\n\nexport default connect(mapStateToProps, mapDispatchToProps)(${cmpName}); `
+    }
+
+    if (!exportString)
         exportString = `export default ${componentName} `
 
     return exportString

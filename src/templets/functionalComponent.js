@@ -11,7 +11,7 @@ const getFunctionalComponent = (componentName, { props, scss, redux ,jsx}) => {
   return (`${getImportString(scss, false, redux)}
 \n
 ${ redux ? getReduxMap() : ''}
-export function ${ componentName} () {\n
+ const ${componentName} = () =>{\n
   ${getJSXBody(jsx)}
 }\n
 ${ getExportStr(componentName, scss, redux)} `)
@@ -29,7 +29,7 @@ const getFunctionalComponentWithProps = (componentName, { props, scss, redux ,js
 
   return (`${getImportString(scss, true, redux)} \n
 ${ redux ? getReduxMap() : ''}
-export function ${ componentName} ({ ${propsStr}}) {\n
+const ${componentName} = ({ ${propsStr}})=> {\n
   ${getJSXBody(jsx)}
 }\n
 ${getPropTypes(componentName, props)}

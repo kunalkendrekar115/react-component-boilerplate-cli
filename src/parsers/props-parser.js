@@ -1,5 +1,8 @@
 var inquirer = require('inquirer');
 
+
+const promptMessage = 'Enter Props name-type-isRequired(y/n)-defaultValue separated by comma(,) \n(ex: userId-number-n-10)'
+
 const validTypes = ['array', 'number', 'string', 'func', 'object', 'bool', 'element']
 
 
@@ -12,7 +15,7 @@ getDefauleValue = (type) => {
         case 'array': return [];
         case 'bool': return false;
         default: null;
-            
+
     }
 }
 parseProps = () => {
@@ -21,7 +24,7 @@ parseProps = () => {
 
         inquirer
             .prompt([
-                { name: 'props', message: 'Enter Props name-type-isRequired(y/n)-defaultValue separated by comma(,) \n(ex: userId-number-n-10)' }
+                { name: 'props', message: promptMessage }
             ]).then(({ props }) => {
 
                 let propsArray = props.replace(/\s/g, "")
