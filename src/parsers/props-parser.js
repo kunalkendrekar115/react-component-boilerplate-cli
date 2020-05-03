@@ -11,7 +11,7 @@ getDefauleValue = (type) => {
     switch (type) {
 
         case 'number': return 0;
-        case 'string': return '';
+        case 'string': return `''`;
         case 'array': return [];
         case 'bool': return false;
         default: null;

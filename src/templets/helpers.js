@@ -86,9 +86,9 @@ const getPropTypes = (componentName, props) => {
 ${componentName}.defaultProps = {
   ${defaultValues.reduce((acc, { name, defaultValue }, index) => {
 
-            if (index == 0 && props.length > 1)
+            if (index == 0 && defaultValues.length > 1)
                 return (`${name}: ${defaultValue},\n`)
-            else if (index == props.length - 1)
+            else if (index == defaultValues.length - 1)
                 return (`${acc}${name}:${defaultValue}`)
             else
                 return (`${acc}${name}: ${defaultValue},\n`)
