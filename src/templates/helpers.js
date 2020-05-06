@@ -1,14 +1,14 @@
 const getImportString = (isScssImport, isPropsAvailable, isRedux) => {
   let importString = `import React from 'react';`
 
-  if (isScssImport)
-    importString = `${importString}\nimport styles from './index.style.scss';\nimport CSSModules from "react-css-modules"; `
-
   if (isPropsAvailable)
     importString = `${importString}\nimport PropTypes from "prop-types";`
 
   if (isRedux)
-    importString = `${importString}\nimport { bindActionCreators } from "redux";\nimport { connect } from "react-redux";`
+    importString = `${importString}\n\nimport { bindActionCreators } from "redux";\nimport { connect } from "react-redux";`
+
+  if (isScssImport)
+    importString = `${importString}\n\nimport CSSModules from "react-css-modules";\nimport styles from "./index.style.scss";`
 
   return importString
 }
@@ -28,9 +28,9 @@ const getExportStr = (componentName, isScss, isRedux) => {
 
   if (isScss && !isRedux) {
     cmpName = `${componentName}Styled`
-    exportString = `export default ${cmpName} = CSSModules(${componentName}, styles, {
+    exportString = `const ${cmpName} = CSSModules(${componentName}, styles, {
       allowMultiple: true
-    }); `
+    });\n\nexport default ${cmpName}`
   } else if (isScss && isRedux) {
     cmpName = `${componentName}Styled`
     exportString = `const ${cmpName} = CSSModules(${componentName}, styles, {
@@ -77,9 +77,9 @@ const getPropTypes = (componentName, props) => {
     return `${propTypes}\n
 ${componentName}.defaultProps = {
   ${defaultValues.reduce((acc, { name, defaultValue }, index) => {
-    if (index == 0 && defaultValues.length > 1)
+    if (index === 0 && defaultValues.length > 1)
       return `${name}: ${defaultValue},\n`
-    if (index == defaultValues.length - 1)
+    if (index === defaultValues.length - 1)
       return `${acc}${name}:${defaultValue}`
     return `${acc}${name}: ${defaultValue},\n`
   }, ``)}    

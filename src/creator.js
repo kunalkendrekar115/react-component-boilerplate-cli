@@ -1,7 +1,7 @@
 const fs = require("fs")
 const logSymbols = require("log-symbols")
 const prettier = require("prettier")
-const templates = require("./templats")
+const templates = require("./templates")
 
 const { parseProps, parseJsx } = require("./parsers")
 
