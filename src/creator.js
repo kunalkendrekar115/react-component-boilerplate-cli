@@ -53,7 +53,7 @@ const createComponent = async ({ name, redux, scss, test, props, jsx }) => {
     if (jsx) {
       const jsxStr = await parseJsx()
       console.log(jsxStr)
-      cmpArgs = { ...cmpArgs, jsxStr }
+      cmpArgs = { ...cmpArgs, jsx: jsxStr }
     }
 
     await createReactComponent(name, cmpArgs)

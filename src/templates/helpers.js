@@ -14,7 +14,7 @@ const getImportString = (isScssImport, isPropsAvailable, isRedux) => {
 }
 
 const getJSXBody = (jsx) => {
-  if (jsx) return `return (\n  ${jsx}\n )`
+  if (jsx) return `return (\n ${jsx}\n )`
   return `return (
       <div>
       </div>
