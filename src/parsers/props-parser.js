@@ -23,7 +23,7 @@ const getDefauleValue = (type) => {
     case "bool":
       return false
     default:
-      null
+      return null
   }
 }
 
@@ -42,7 +42,7 @@ const parseProps = () => {
               if (validTypes.includes(propSplit[1])) {
                 const isRequired = propSplit[2].toUpperCase()
                 if (isRequired !== "Y" && isRequired !== "N")
-                  reject("Invalid isRequired argument")
+                  reject(new Error("Invalid isRequired argument"))
                 else if (isRequired === "N") {
                   propObj = {
                     propName: propSplit[0],
@@ -59,15 +59,15 @@ const parseProps = () => {
                     isRequired
                   }
                 }
-              } else reject(`Invalid PropType ${propSplit[1]}`)
-            } else if (propSplit && propSplit.length == 2) {
+              } else reject(new Error(`Invalid PropType ${propSplit[1]}`))
+            } else if (propSplit && propSplit.length === 2) {
               if (validTypes.includes(propSplit[1]))
                 propObj = {
                   propName: propSplit[0],
                   type: propSplit[1],
                   isRequired: "Y"
                 }
-              else reject(`Invalid PropType ${propSplit[1]}`)
+              else reject(new Error(`Invalid PropType ${propSplit[1]}`))
             } else
               propObj = {
                 propName: prop,

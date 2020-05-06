@@ -64,11 +64,11 @@ const getPropTypes = (componentName, props) => {
         const isRequiredStr = `${
           isRequired.toUpperCase() == "Y" ? `.isRequired` : ``
         }`
-        if (index == 0 && props.length > 1)
+        if (index === 0 && props.length > 1)
           return `${name}: PropTypes.${type}${isRequiredStr},\n`
-        else if (index == props.length - 1)
+        if (index === props.length - 1)
           return `${acc}${name}: PropTypes.${type}${isRequiredStr}`
-        else return `${acc}${name}: PropTypes.${type}${isRequiredStr},\n`
+        return `${acc}${name}: PropTypes.${type}${isRequiredStr},\n`
       },
       ``
     )} \n}`
@@ -79,9 +79,9 @@ ${componentName}.defaultProps = {
   ${defaultValues.reduce((acc, { name, defaultValue }, index) => {
     if (index == 0 && defaultValues.length > 1)
       return `${name}: ${defaultValue},\n`
-    else if (index == defaultValues.length - 1)
+    if (index == defaultValues.length - 1)
       return `${acc}${name}:${defaultValue}`
-    else return `${acc}${name}: ${defaultValue},\n`
+    return `${acc}${name}: ${defaultValue},\n`
   }, ``)}    
 }`
   }
