@@ -1,79 +1,82 @@
-var fs = require('fs')
-const logSymbols = require('log-symbols');
+const fs = require("fs")
+const logSymbols = require("log-symbols")
 
-const templets = require('./templets')
-const { parseProps, parseJsx } = require('./parsers')
+const templates = require("./templats")
+const prettier = require("prettier")
 
+const { parseProps, parseJsx } = require("./parsers")
 
-const createComponent = async (argsObj) => {
+const createComponent = async ({ name, redux, scss, test, props, jsx }) => {
+  try {
+    let successMessageString = null
 
-    try {
-        const { name, redux, scss, test, props, jsx } = argsObj
+    if (!name) throw new Error("Component Name should be as a first argument")
 
-        let consoleStr
+    let cmpArgs = { scss, redux }
 
-        if (!name)
-            throw new Error('Component Name should be first argument')
-
-        let cmpArgs = { scss, redux }
-
-        if (props) {
-            const propsArray = await parseProps()
-            console.log(propsArray)
-            cmpArgs = { ...cmpArgs, props: propsArray }
-        }
-
-        if (jsx) {
-            const jsx = await parseJsx()
-            console.log(jsx)
-            cmpArgs = { ...cmpArgs, jsx }
-        }
-
-        await createReactComponent(name, cmpArgs)
-
-        consoleStr = `\t\b\b\b|- ${name}\n\t|- index.jsx`
-
-        if (scss) {
-            await createScssFile(name)
-            consoleStr = `${consoleStr}\n\t|- index.style.scss`
-        }
-
-        if (test) {
-            await createTestFile(name)
-            consoleStr = `${consoleStr}\n\t|- index.spec.js`
-        }
-
-        console.log('')
-        console.log(logSymbols.success, `All Done\n\n${consoleStr}\n`)
-
-
-    } catch (error) {
-        if (error.message)
-            console.log(logSymbols.error, error.message)
-        else
-            console.log(logSymbols.error, error)
+    if (props) {
+      const propsArray = await parseProps()
+      console.log(propsArray)
+      cmpArgs = { ...cmpArgs, props: propsArray }
     }
+
+    if (jsx) {
+      const jsx = await parseJsx()
+      console.log(jsx)
+      cmpArgs = { ...cmpArgs, jsx }
+    }
+
+    await createReactComponent(name, cmpArgs)
+
+    successMessageString = `\t\b\b\b|- ${name}\n\t|- index.jsx`
+
+    if (scss) {
+      await createScssFile(name)
+      successMessageString = `${successMessageString}\n\t|- index.style.scss`
+    }
+
+    if (test) {
+      await createTestFile(name)
+      successMessageString = `${successMessageString}\n\t|- index.spec.js`
+    }
+
+    console.log("")
+    console.log(logSymbols.success, `All Done\n\n${successMessageString}\n`)
+  } catch (error) {
+    if (error.message) console.log(logSymbols.error, error.message)
+    else console.log(logSymbols.error, error)
+  }
 }
 
 const createReactComponent = (componentName, args) => {
+  fs.mkdirSync(componentName)
 
-    fs.mkdirSync(componentName)
+  const componentTemplate = templates.getFunctionalComponent(
+    componentName,
+    args
+  )
 
-    const templaeStr = templets.getFunctionalComponent(componentName, args)
-    fs.writeFileSync(componentName + '/index.jsx', templaeStr)
-    
-    console.log(logSymbols.success, 'created index.jsx ')
+  const formattedTemplate = prettier.format(componentTemplate, {
+    trailingComma: "none",
+    tabWidth: 2,
+    semi: false,
+    singleQuote: false,
+    parser: "babel"
+  })
 
+  fs.writeFileSync(`${componentName}/index.jsx`, formattedTemplate)
+
+  console.log(logSymbols.success, "created index.jsx ")
 }
 
 const createScssFile = (dir) => {
-    fs.writeFileSync(dir + '/index.style.scss', '')
-    console.log(logSymbols.success, 'created index.style.scss')
+  fs.writeFileSync(`${dir}/index.style.scss`, ``)
+  console.log(logSymbols.success, "created index.style.scss")
 }
 
-createTestFile = (dir) => {
-    fs.writeFileSync(dir + '/index.spec.jsx', '')
-    console.log(logSymbols.success, 'created index.spec.jsx')
+const createTestFile = (dir) => {
+  fs.writeFileSync(`${dir}/index.spec.jsx`, ``)
+  console.log(logSymbols.success, "created index.spec.jsx")
 }
 
 module.exports = createComponent
