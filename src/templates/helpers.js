@@ -58,11 +58,11 @@ const getPropTypes = (componentName, props) => {
     ${props.reduce(
       (acc, { propName: name, type, isRequired, defaultValue }, index) => {
         if (defaultValue !== undefined) {
-          defaultValues = [...defaultValues, { name, defaultValue }]
+          defaultValues = [...defaultValues, { name, defaultValue, type }]
         }
 
         const isRequiredStr = `${
-          isRequired.toUpperCase() == "Y" ? `.isRequired` : ``
+          isRequired.toUpperCase() === "Y" ? `.isRequired` : ``
         }`
         if (index === 0 && props.length > 1)
           return `${name}: PropTypes.${type}${isRequiredStr},\n`
@@ -76,12 +76,14 @@ const getPropTypes = (componentName, props) => {
   if (defaultValues.length > 0) {
     return `${propTypes}\n
 ${componentName}.defaultProps = {
-  ${defaultValues.reduce((acc, { name, defaultValue }, index) => {
+  ${defaultValues.reduce((acc, { name, defaultValue, type }, index) => {
+    const formatedValue = type === "string" ? `'${defaultValue}'` : defaultValue
+
     if (index === 0 && defaultValues.length > 1)
-      return `${name}: ${defaultValue},\n`
+      return `${name}: ${formatedValue},\n`
     if (index === defaultValues.length - 1)
-      return `${acc}${name}:${defaultValue}`
-    return `${acc}${name}: ${defaultValue},\n`
+      return `${acc}${name}:${formatedValue}`
+    return `${acc}${name}: ${formatedValue},\n`
   }, ``)}    
 }`
   }

@@ -17,7 +17,7 @@ const getDefauleValue = (type) => {
     case "number":
       return 0
     case "string":
-      return `''`
+      return ""
     case "array":
       return []
     case "bool":
