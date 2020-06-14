@@ -21,6 +21,7 @@ if (cliArgs[0] === "-help") {
       return { ...acc, [args]: true }
 
     console.log(logSymbols.error, `Invalid argument ${args}`)
+    return null
   }, {})
 
   if (argsObj) createComponent(argsObj)

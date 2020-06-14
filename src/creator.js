@@ -71,7 +71,7 @@ const createComponent = async ({ name, redux, scss, test, props, jsx }) => {
     }
 
     console.log("")
-    console.log(logSymbols.success, `All Done\n\n${successMessageString}\n`)
+    console.log(logSymbols.success, `All Done!\n\n${successMessageString}\n`)
   } catch (error) {
     if (error.message) console.log(logSymbols.error, error.message)
     else console.log(logSymbols.error, error)
