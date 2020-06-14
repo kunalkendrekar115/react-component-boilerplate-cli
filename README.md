@@ -1,4 +1,4 @@
-## React boilerplate component generator
+## React boilerplate code generator for component
 
 This cli lets you to create react components with boilerplate code generation for imports, render and PropTypes , you can create respective scss and test file for component.
 
@@ -9,6 +9,9 @@ Create components with below folder structure
 - `ComponentName/index.scss` (optional)
 
 ### Usage
+
+- Install cli:
+- `npm install -g react-components-boilerplate-cli`
 
 - Create functional components type using prompts:
   - `crc`
@@ -33,9 +36,13 @@ Create components with below folder structure
 
 ![screen recording](https://recordit.co/P4A0bGbc2y.gif)
 
-- Create Component with jsx body through emmet syntax (Cheat-Sheets: https://docs.emmet.io/cheat-sheet/)
+- Create Component with jsx body through emmet syntax
 
 ![screen recording](https://recordit.co/CKjFHG0X7E.gif)
+
+Emmet cheat-sheet for jsx code generation
+
+https://docs.emmet.io/cheat-sheet/
 
 For scss files, its required to use react-css-module npm package
 
