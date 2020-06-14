@@ -10,7 +10,7 @@ Create components with below folder structure
 
 ### Setup
 
-- `npm install -g react-components-boilerplate-cli`
+- `npm i -g react-components-boilerplate-cli`
 
 ### Usage
 
