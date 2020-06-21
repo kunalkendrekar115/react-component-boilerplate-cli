@@ -1,3 +1,4 @@
+//Test commit 
 const helpContent = () => {
   const msg = `Welcome to react-components-boilerplate-cli\n`
 
